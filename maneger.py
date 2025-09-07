@@ -1,8 +1,11 @@
 from get_paths import GetPaths
 
-get_paths = GetPaths()
+class Maneger:
 
-list_paths = get_paths.absoluteFilePaths()
+    get_paths = GetPaths()
 
-for path in list_paths:
-    print(path)
+    def print_all_path_files(self):
+        list_paths = self.get_paths.absoluteFilePaths()
+
+        for path in list_paths:
+            print(path)
