@@ -1,0 +1,11 @@
+import os
+
+class GetPaths:
+
+    # Return list of all faths files in this directory(directory_path)
+    def absoluteFilePaths(self, directory_path):
+        path_files = []
+        for root, dirs, files in os.walk(os.path.abspath(directory_path)):
+            for file in files:
+                path_files.append(os.path.join(root, file))
+        return path_files
