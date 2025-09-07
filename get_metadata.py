@@ -4,13 +4,14 @@ import datetime
 class GetMetadata:
 
     # Get file path and return metadata fields.
-    def get_file_metadata(self, file_path) -> dict:
+    def get_file_metadata(self, file_path):
 
         try: 
             #Get stat_result object
             stats = os.stat(file_path)
             
-            file_name = os.path.basename(file_path) 
+            
+            file_name = os.path.basename(file_path)
             file_size = stats.st_size  # Size in bytes
             creation_time = datetime.datetime.fromtimestamp(stats.st_birthtime) # Creation time
             device = stats.st_dev # Device identifier
@@ -18,7 +19,7 @@ class GetMetadata:
             metadata = {
             "File name": file_name,
             "File Size (bytes)": file_size,
-            "Creation Time": creation_time,
+            "Creation Time": creation_time.isoformat(),
             "Device Identifier": device
             }
 
