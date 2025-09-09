@@ -1,29 +1,37 @@
 from listener_to_topic import listen_kafka
+from logger.logger import Logger
+import time
 
 class DivisionData:
+    logger = Logger.get_logger()
 
     def get_list_data(self)->list:
-        print("listening...")
-        all_metadata = listen_kafka()
-        print("OK: The information is extracted.")
+        self.logger.info("listening...")
+
+        consumer = listen_kafka()
         list_all_data = []
         try:
-            for message in all_metadata:
-                print("Enter")
-                print(message.value)
+            for message in consumer:
                 list_all_data.append(message.value)
-            print("No")
+                self.logger.info(message)
+
+            consumer.close()
             return list_all_data
         except KeyboardInterrupt:
-            print("stopt thre lesenir")
+            self.logger.info("Listening stopped")
 
     
     def get_metadata_parts(self, all_data: list)->list:
+        self.logger.info("enter")
         my_list = []
         for message in all_data:
+            self.logger.info("enter")
             a = message.pop("Path", None)
-            print(a)
+            self.logger.info(a)
             my_list.append(message)
+            self.logger.info(my_list)
+            time.sleep(3)
+
         return my_list
 
             
