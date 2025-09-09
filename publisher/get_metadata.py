@@ -13,7 +13,7 @@ class GetMetadata:
             
             file_name = os.path.basename(file_path)
             file_size = stats.st_size  # Size in bytes
-            creation_time = datetime.datetime.fromtimestamp(stats.st_birthtime) # Creation time
+            creation_time = datetime.datetime.fromtimestamp(stats.st_ctime) # Creation time
             device = stats.st_dev # Device identifier
 
             metadata = {

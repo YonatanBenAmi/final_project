@@ -1,12 +1,15 @@
 from kafka import KafkaProducer
 import json
+from logger.logger import Logger
 
 class SendToKafka:
 
-    def send(self, json):
+    logger = Logger.get_logger()
+
+    def send(self, message):
         producer = self.get_producer()
-        self.publish_message(producer, "metadata", json)
-        print("200: OK")
+        self.publish_message(producer, "metadata", message)
+        self.logger.info("OK - Sent to Kafka successfully.")
                     
       
     def get_producer(self):

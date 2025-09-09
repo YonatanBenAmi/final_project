@@ -1,6 +1,7 @@
 from get_paths import GetPaths
 from get_metadata import GetMetadata
 from send_to_kafka import SendToKafka
+import time
 import json
 
 class Maneger:
@@ -19,7 +20,7 @@ class Maneger:
         return list_metadata
     
     # Get path and metadata, Return full metadata(metadata + path).
-    def get_full_metadata(self, path, metadata):
+    def get_full_metadata(self, path:str, metadata:dict)->dict:
         metadata["Path"] = path
         return metadata
 
@@ -28,4 +29,6 @@ class Maneger:
         for i in range(len(list_paths)):
             full_metadata = self.get_full_metadata(list_paths[i], list_metadata[i])
             self.send_to_kafka.send(full_metadata)
+            time.sleep(1)  # Pause for 2 seconds
+            
 
