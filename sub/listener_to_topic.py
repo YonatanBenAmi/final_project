@@ -12,12 +12,5 @@ def listen_kafka():
     )
 
     return consumer
-    # print("listening...")
-    # try:
-    #     for message in consumer:
-    #         print(f"[{message.topic}] {message.value}")
-    # except KeyboardInterrupt:
-    #     print("stopt thre lesenir")
 
 
-# listen_kafka()
