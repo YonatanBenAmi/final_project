@@ -6,11 +6,10 @@ class GetMetadata:
     # Get file path and return metadata fields.
     def get_file_metadata(self, file_path):
 
-        try: 
-            #Get stat_result object
-            stats = os.stat(file_path)
-            
-            
+        try:
+            # <<< Variables >>>
+            stats = os.stat(file_path) #Get stat_result object
+
             file_name = os.path.basename(file_path)
             file_size = stats.st_size  # Size in bytes
             creation_time = datetime.datetime.fromtimestamp(stats.st_ctime) # Creation time

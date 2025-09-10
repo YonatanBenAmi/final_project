@@ -29,6 +29,6 @@ class Maneger:
         for i in range(len(list_paths)):
             full_metadata = self.get_full_metadata(list_paths[i], list_metadata[i])
             self.send_to_kafka.send(full_metadata)
-            time.sleep(1)  # Pause for 2 seconds
+            time.sleep(1)
             
 

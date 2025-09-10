@@ -3,13 +3,16 @@ from logger.logger import Logger
 import time
 
 class DivisionData:
+    # <<< Creating instances >>>
     logger = Logger.get_logger()
+
+    # <<< Functions >>>
 
     def get_list_data(self, count_paths)->list:
         self.logger.info("listening...")
-
         consumer = listen_kafka()
         list_all_data = []
+
         try:
             for message in consumer:
                 count_paths -= 1
