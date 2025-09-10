@@ -9,3 +9,6 @@ class GetPaths:
             for file in files:
                 path_files.append(os.path.join(root, file))
         return path_files
+
+    def get_count_path(self, list_paths):
+        return len(list_paths)

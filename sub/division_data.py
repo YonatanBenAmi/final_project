@@ -5,33 +5,34 @@ import time
 class DivisionData:
     logger = Logger.get_logger()
 
-    def get_list_data(self)->list:
+    def get_list_data(self, count_paths)->list:
         self.logger.info("listening...")
 
         consumer = listen_kafka()
         list_all_data = []
         try:
             for message in consumer:
+                count_paths -= 1
                 list_all_data.append(message.value)
-                self.logger.info(message)
-
+                self.logger.info(message.value)
+                if count_paths <= 0:
+                    break
             consumer.close()
             return list_all_data
         except KeyboardInterrupt:
             self.logger.info("Listening stopped")
 
     
-    def get_metadata_parts(self, all_data: list)->list:
-        self.logger.info("enter")
-        my_list = []
+    def get_metadata_parts(self, all_data: list)->tuple:
+        list_for_metadata = []
+        list_for_audio_paths = []
         for message in all_data:
-            self.logger.info("enter")
-            a = message.pop("Path", None)
-            self.logger.info(a)
-            my_list.append(message)
-            self.logger.info(my_list)
-            time.sleep(3)
+            list_for_audio_paths.append(message["Path"])
+            list_for_audio_paths.append(message["File name"])
+            message.pop("Path", None)
+            list_for_metadata.append(message)
+            self.logger.info(message)
 
-        return my_list
+        return list_for_metadata, list_for_audio_paths
 
             
