@@ -9,9 +9,10 @@ get_paths = GetPaths()
 get_metadata = GetMetadata()
 send_to_kafka = SendToKafka()
 
-
+# <<< Variables >>>
 directory_path = r"C:\Users\yba60\Desktop\podcasts"
 
+# <<< Code flow >>>
 list_paths = get_paths.absoluteFilePaths(directory_path) # List of all paths.
 list_metadata = manager.get_list_metadata(list_paths) # List of all metadata.
 manager.send_all_metadata_to_kafka(list_paths, list_metadata) # Send to kafka all full metadata.
